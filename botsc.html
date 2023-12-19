@@ -100,23 +100,54 @@ def kycf():
     obox.innerHTML="Completing KYC is as easy as unlocking a level in your favorite game: gather your gear, tackle a few challenges, and boom, you're in! Step one: equip \nyourself with your ID, proof of address, and maybe a bit of patience. Next, head to the designated portal on your platform of choice. There, you'll face some verification quests: filling out forms, snapping selfies, maybe even uploading those documents. Conquer these, and the gatekeeper AI will grant you access! \nRemember, each platform might have its own unique questline, so check their instructions for the most epic KYC victory."
 flist={"dbt1":dbt1f,"dbt2":dbt1f,"kyc":kycf}
 clist={"dbt1":"123-456-789","dbt2":"987-654-321","kyc":"1090-8766-343"}
-ibox.placeholder=genres[rd.randrange(0,len(genres))]
-async def chk():
-    f=Element("flag").element.innerHTML
-    if(f==0):
-        return
-    await chk()
-while True:
-    await chk()
+while(True):
+    ibox.placeholder=genres[rd.randrange(0,len(genres))]
+    await asn.sleep(10)
     us=ibox.value
-    obox.innerHTML=len(us);
+    ibox.value=""
+    console.log(us)
+    usl=us.split(" ")
+    f=1
+    g=1
+    for i in usl:
+        if i in negres:
+            obox.innerHTML="That's alright mate. I ain't going anywhere. Feel free to ask me if you need any help."
+            g=0
+            break
+    if g==0:
+        asn.sleep(4)
+        continue
+    for i in usl:
+        if i in kf:
+            f=0
+            obox.innerHTML=f"You need help with {i}. Am i right?"
+            await asn.sleep(5)
+            ni=ibox.value
+            ibox.value=""
+            if(ni in psres):
+                obox.innerHTML="\nAlright pal, here's what i found\n"
+                flist[i]()
+                obox.innerHTML+="\nDid i solve your isuue? :"
+                await asn.sleep(6)
+                n2=ibox.value
+                if (n2 in psres):
+                    obox.innerHTML="Thanks mate, glad that i could be of some help"
+                else:
+                    obox.innerHTML=f"Sorry pal, try contacting our customer care. To get help regarding {i} contact {clist[i]}"
+            else:
+                obox.innerHTML="Sorry mate. I think i misunderstood."
 
+    if(f==1):
+            obox.innerHTML="Sorry mate, I couldn't get you. Try something else"
+    await asn.sleep(4)
+    obox.innerHTML=""
          </py-script>
-        <div id="iholder"><div id=uter><div id="imgbox"></div></div><input type="text" name="" id="uinp" placeholder="Enter your prompt, mate"><button id="prmt" onclick="flips()">Go</button></div>
+    <div id="iholder"><div id=uter><div id="imgbox"></div></div><input type="text" name="" id="uinp" placeholder="Enter your prompt, mate"><button id="prmt" onclick="flips()">Go</button></div>
         <div id="outbox"></div><div id=flag>1</div>
          <script type="text/javascript" src="bs.js"></script>
          <script type="text/javascript">
-             function flips(){
+                alert("Hey pal, quickmode is enabled. Please enter your prompt in 5s.")
+             function flips(){                
                 document.querySelector("#flag").innerHTML=0;
              }
          </script>
